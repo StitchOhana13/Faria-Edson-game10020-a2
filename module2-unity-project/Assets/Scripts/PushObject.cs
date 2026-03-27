@@ -6,18 +6,8 @@ public class PushObject : MonoBehaviour
 {
     [SerializeField]
     private float forceMagnitude;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Allows the player to push rigidbodies objects around
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody rigidbody = hit.collider.attachedRigidbody;

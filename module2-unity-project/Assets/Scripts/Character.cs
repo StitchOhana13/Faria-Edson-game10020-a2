@@ -27,8 +27,8 @@ public class Character : MonoBehaviour
     public GameObject armRight;
 
     bool shortRangeAttack = true;
-    bool startRockSpawn = false;
-    float rockTimer = 0.0f;
+    //bool startRockSpawn = false;
+    //float rockTimer = 0.0f;
 
     void Awake()
     {
@@ -43,7 +43,7 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        UpdateWeapon();
+        //UpdateWeapon();
     }
 
     private void Update()
@@ -63,21 +63,21 @@ public class Character : MonoBehaviour
                 // only throw the rock if it exists
                 if (rock != null)
                 {
-                    ThrowRock();
+                    //ThrowRock();
                     animator.SetTrigger("StartAttack");
                 }
             }
         }
 
-        bool weaponSwitch = weaponSwitchInput.action.WasPressedThisFrame();
-        if (weaponSwitch)
-        {
-            shortRangeAttack = !shortRangeAttack;
-            UpdateWeapon();
-        }
+        //bool weaponSwitch = weaponSwitchInput.action.WasPressedThisFrame();
+        //if (weaponSwitch)
+        //{
+        //    shortRangeAttack = !shortRangeAttack;
+        //    //UpdateWeapon();
+        //}
 
-        // rock throwing cooldown code
-        if (startRockSpawn) SpawnRockDelay();
+        //// rock throwing cooldown code
+        //if (startRockSpawn) SpawnRockDelay();
     }
 
     void PlayerMotion()
@@ -122,22 +122,22 @@ public class Character : MonoBehaviour
         animator.SetFloat("Speed", horizontalVelocity.magnitude);
     }
 
-    void ThrowRock()
-    {
-        if (rock != null)
-        {
-            Vector3 point1 = rock.transform.position;
-            point1.y = 0f;
-            Vector3 point2 = GetMouseHitPoint();
-            point2.y = 0f;
+    //void ThrowRock()
+    //{
+    //    if (rock != null)
+    //    {
+    //        Vector3 point1 = rock.transform.position;
+    //        point1.y = 0f;
+    //        Vector3 point2 = GetMouseHitPoint();
+    //        point2.y = 0f;
 
-            Vector3 direction = (point2 - point1).normalized;
+    //        Vector3 direction = (point2 - point1).normalized;
             
-            rock.Throw(direction, throwForce);
-            rock = null;
-            startRockSpawn = true;
-        }
-    }
+    //        rock.Throw(direction, throwForce);
+    //        rock = null;
+    //        startRockSpawn = true;
+    //    }
+    //}
 
     // standard screen raycast code - gets a world space position based on mouse click
     Vector3 GetMouseHitPoint()
@@ -150,40 +150,40 @@ public class Character : MonoBehaviour
         return Vector3.zero;
     }
 
-    void SpawnRockDelay()
-    {
-        rockTimer += Time.deltaTime;
-        if (rockTimer >= 0.5f)
-        {
-            rockTimer = 0.0f;
-            startRockSpawn = false;
-            rock = Instantiate(rockPrefab, armRight.transform);
+    //void SpawnRockDelay()
+    //{
+    //    rockTimer += Time.deltaTime;
+    //    if (rockTimer >= 0.5f)
+    //    {
+    //        rockTimer = 0.0f;
+    //        startRockSpawn = false;
+    //        rock = Instantiate(rockPrefab, armRight.transform);
 
-            // this fixes a timing issue where rock is spawned after 
-            // weapon is switched
-            if (shortRangeAttack) rock.gameObject.SetActive(false);
-        }
-    }
+    //        // this fixes a timing issue where rock is spawned after 
+    //        // weapon is switched
+    //        if (shortRangeAttack) rock.gameObject.SetActive(false);
+    //    }
+    //}
 
-    void UpdateWeapon()
-    {
-        shovel.gameObject.SetActive(shortRangeAttack);
+    //void UpdateWeapon()
+    //{
+    //    shovel.gameObject.SetActive(shortRangeAttack);
         
-        // we need to check if rock is not null in case we have already thrown in
-        // and it hasn't respawned yet
-        if (rock != null) rock.gameObject.SetActive(!shortRangeAttack);
+    //    // we need to check if rock is not null in case we have already thrown in
+    //    // and it hasn't respawned yet
+    //    if (rock != null) rock.gameObject.SetActive(!shortRangeAttack);
         
-        if (shortRangeAttack)
-        {
-            // disable hitbox initially in case animation player did not do it for us
-            // (animation didn't finish)
-            shovel.EnableHitbox(0);
-        }
-        else
-        {
-            if (rock != null) rock.EnableHitbox(0);
-        }
-    }
+    //    if (shortRangeAttack)
+    //    {
+    //        // disable hitbox initially in case animation player did not do it for us
+    //        // (animation didn't finish)
+    //        shovel.EnableHitbox(0);
+    //    }
+    //    else
+    //    {
+    //        if (rock != null) rock.EnableHitbox(0);
+    //    }
+    //}
 
     // this method is called from the animation player
     public void EnableHitbox(int value)
