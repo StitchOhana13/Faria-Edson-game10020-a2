@@ -5,11 +5,7 @@ using UnityEngine.Events;
 
 public class PastryBagToggle : MonoBehaviour
 {
-    //public Sprite toggleOn;
-    //public Sprite toggleOff;
 
-    // we should hide this because we do not want other developers
-    // attempting to connect this Unity Event in the editor
     [HideInInspector]
     public UnityEvent<bool> OnToggle;
 

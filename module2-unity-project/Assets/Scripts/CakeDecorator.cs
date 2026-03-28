@@ -9,6 +9,8 @@ public enum CakeStates { Plain, Vanilla, Chocolate, Strawberry }
 
 public class CakeDecorator : MonoBehaviour, IHittable
 {
+    public Door door;
+
     public Sprite plainCake;
     public Sprite strawberryCake;
     public Sprite chocolateCake;
@@ -21,6 +23,14 @@ public class CakeDecorator : MonoBehaviour, IHittable
     public Character character;
     public float characterDistance = 5.0f;
     public bool useDistance = false;
+
+    public bool vanillaCakeDecorated;
+    public bool chocolateCakeDecorated;
+    public bool strawberryCakeDecorated;
+
+    //public CakesDecorator cakeDecoration = cakesDecorated;
+
+    //public UnityEvent<CakeDecorator> CakesDecorated;
 
     [HideInInspector]
     public CakeStates cakeState = CakeStates.Plain;
@@ -78,15 +88,19 @@ public class CakeDecorator : MonoBehaviour, IHittable
             // set the sprite of the cake according to whatever state it is in.
             case CakeStates.Plain:
                 spriteRenderer.sprite = plainCake;
+                //door.lockState = false;
                 break;
             case CakeStates.Vanilla:
                 spriteRenderer.sprite = vanillaCake;
+                vanillaCakeDecorated = true;
                 break;
             case CakeStates.Chocolate:
                 spriteRenderer.sprite = chocolateCake;
+                //chocolateCakeDecorated = true;
                 break;
             case CakeStates.Strawberry:
                 spriteRenderer.sprite = strawberryCake;
+                //strawberryCakeDecorated = true;
                 break;
         }
         animator.SetTrigger("StartHit");
@@ -96,24 +110,31 @@ public class CakeDecorator : MonoBehaviour, IHittable
     {
         if (other.gameObject.tag == "VanillaCake")
         {
-            VanillaCake.SetActive(true);
+            //VanillaCake.SetActive(true);
+            cakeState = CakeStates.Vanilla;
+            UpdateState();
             Destroy(other.gameObject);
-            Destroy(gameObject);
-            
+            //Destroy(gameObject);
+
         }
         else if (other.gameObject.tag == "ChocolateCake")
         {
-            ChocolateCake.SetActive(true);
+            //ChocolateCake.SetActive(true);
+            cakeState = CakeStates.Chocolate;
+            UpdateState();
             Destroy(other.gameObject);
-            Destroy(gameObject);
+            //Destroy(gameObject);
 
         }
         else if (other.gameObject.tag == "StrawberryCake")
         {
-            StrawberryCake.SetActive(true);
+            //strawberryCakeDecorated = true;
+            cakeState = CakeStates.Strawberry;
+            UpdateState();
+            //StrawberryCake.SetActive(true);
             Destroy(other.gameObject);
-            Destroy(gameObject);
-
+            //Destroy(gameObject);
+            
         }
     }
 
@@ -128,6 +149,18 @@ public class CakeDecorator : MonoBehaviour, IHittable
         //    //OnCakeStateChanged.Invoke(cakeState);
         //}
     }
+
+    //void lockDoor()
+    //{
+    //    if (vanillaCakeDecorated == true)
+    //    {
+    //        door.SetLock(false);
+    //    }
+    //    else
+    //    {
+    //        door.SetLock(true);
+    //    }
+    //}
 
     // this is called from the toggle Unity Event
     //public void OpenClose(bool close)

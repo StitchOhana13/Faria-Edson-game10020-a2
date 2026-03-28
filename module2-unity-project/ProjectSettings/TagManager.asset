@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - character
+  - Vanilla
+  - Chocolate
+  - Strawberry
+  - VanillaCake
+  - ChocolateCake
+  - StrawberryCake
   layers:
   - Default
   - TransparentFX

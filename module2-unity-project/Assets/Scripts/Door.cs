@@ -28,12 +28,13 @@ public class Door : MonoBehaviour
     public void SetLock(bool lockState)
     {
         lockedState = lockState;
+
         UpdateState();
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (!lockedState && other.gameObject.CompareTag("character"))
+        if (other.gameObject.CompareTag("character"))
         {
             SceneManager.LoadScene(sceneName);
         }

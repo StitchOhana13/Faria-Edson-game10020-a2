@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class LevelManager : MonoBehaviour
     public Door door;
     public PastryBagShooter pastryBagShooter;
     public GameObject PastryBagHolder;
+    public CakeDecorator CD;
+     
 
     // the level manager is responsible for connecting the core game system events
     // notice that these events have arguments - it's not possible to pass arguments to
@@ -27,20 +30,24 @@ public class LevelManager : MonoBehaviour
             pastryBagShooter.OnShoot.AddListener(pastryBagShooter.Shoot);
         }
 
-        toggle1.OnToggle.AddListener(wallEye.OpenClose);
+        //toggle1.OnToggle.AddListener(wallEye.OpenClose);
 
-        wallEye.OnEyeStateChanged.AddListener(lockDoor);
+        //wallEye.OnEyeStateChanged.AddListener(lockDoor);
+
+        //CD.OnCakeStateChanged.AddListener(lockDoor);
     }
 
-    void lockDoor(WallEyeState eyeState)
-    {
-        if (eyeState == WallEyeState.Defeated)
-        {
-            door.SetLock(false);
-        }
-        else
-        {
-            door.SetLock(true);
-        }
-    }
+    //void lockDoor(CakeStates cakeState)
+    //{
+    //    if (cakeState == CakeStates.Vanilla)
+    //    {
+    //        door.SetLock(false);
+    //    }
+    //    else
+    //    {
+    //        door.SetLock(true);
+    //    }
+    //}
 }
+
+
