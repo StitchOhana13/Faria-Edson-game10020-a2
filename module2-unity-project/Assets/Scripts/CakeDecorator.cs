@@ -14,6 +14,10 @@ public class CakeDecorator : MonoBehaviour, IHittable
     public Sprite chocolateCake;
     public Sprite vanillaCake;
 
+    public GameObject VanillaCake;
+    public GameObject ChocolateCake;
+    public GameObject StrawberryCake;
+
     public Character character;
     public float characterDistance = 5.0f;
     public bool useDistance = false;
@@ -88,16 +92,41 @@ public class CakeDecorator : MonoBehaviour, IHittable
         animator.SetTrigger("StartHit");
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "VanillaCake")
+        {
+            VanillaCake.SetActive(true);
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+            
+        }
+        else if (other.gameObject.tag == "ChocolateCake")
+        {
+            ChocolateCake.SetActive(true);
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+
+        }
+        else if (other.gameObject.tag == "StrawberryCake")
+        {
+            StrawberryCake.SetActive(true);
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+
+        }
+    }
+
     public void Hit(GameObject gameObject)
     {
-        if (cakeState == CakeStates.Plain)
-        {
-            // if (Vanilla shot) hits the cake, the state is changed to VanillaCake, and so on for Chocolate cakes and Strawberry cakes
-            //if ()
-            //cakeState = WallEyeState.Defeated;
-            //UpdateState();
-            //OnCakeStateChanged.Invoke(cakeState);
-        }
+        //if (cakeState == CakeStates.Plain)
+        //{
+        //    // if (Vanilla shot) hits the cake, the state is changed to VanillaCake, and so on for Chocolate cakes and Strawberry cakes
+        //    //if ()
+        //    //cakeState = WallEyeState.Defeated;
+        //    //UpdateState();
+        //    //OnCakeStateChanged.Invoke(cakeState);
+        //}
     }
 
     // this is called from the toggle Unity Event

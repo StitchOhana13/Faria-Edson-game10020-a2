@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8545342054886521585}
   m_Layer: 0
   m_Name: Strawberry Icing
-  m_TagString: Untagged
+  m_TagString: StrawberryCake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3024062339979568136}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -34.204, y: 6.876011, z: 3.2947211}
   m_LocalScale: {x: 0.22434516, y: 0.17993799, z: 0.23237012}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6988533953147720873
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -148,3 +148,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b10d815e9d3acc446ade824cfd83b227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireSpeed: 0.5

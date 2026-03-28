@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour
     public Toggle toggle1;
     public WallEye wallEye;
     public Door door;
+    public PastryBagShooter pastryBagShooter;
+    public GameObject PastryBagHolder;
 
     // the level manager is responsible for connecting the core game system events
     // notice that these events have arguments - it's not possible to pass arguments to
@@ -16,10 +18,13 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        foreach (Transform child in barriers1.transform)
+        foreach (Transform child in PastryBagHolder.transform)
         {
-            Barrier barrier = child.GetComponent<Barrier>();
-            toggle1.OnToggle.AddListener(barrier.Move);
+            //Barrier barrier = child.GetComponent<Barrier>();
+            //toggle1.OnToggle.AddListener(barrier.Move);
+
+            PastryBagShooter pastryBagShooter = child.GetComponent<PastryBagShooter>();
+            pastryBagShooter.OnShoot.AddListener(pastryBagShooter.Shoot);
         }
 
         toggle1.OnToggle.AddListener(wallEye.OpenClose);
